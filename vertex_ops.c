@@ -28,20 +28,21 @@ t_vlist place_vertex(t_coord new_vertex_pos, t_vlist vertex)
   return(new_vlist);
 }
 
-t_wall get_line_coordinates(t_map map, int i)
+t_wall get_line_coordinates(t_map map, int edge_index)
 {
   t_wall line;
 
-  line.start.x = map.vertex[map.edge[i].start].x;
-  line.start.y = map.vertex[map.edge[i].start].y;
-  line.end.x = map.vertex[map.edge[i].end].x;
-  line.end.y = map.vertex[map.edge[i].end].y;
+  line.start.x = map.vertex.coords[map.edge[i].start].x;
+  line.start.y = map.vertex.coords[map.edge[i].start].y;
+  line.end.x = map.vertex.coords[map.edge[i].end].x;
+  line.end.y = map.vertex.coords[map.edge[i].end].y;
   return(line);
 }
 
 t_map create_mid_vertex(t_map map, int edge_index, t_coord point_on_line)
 {
-  map.vertex = place_vertex(point_on_line, new_vertex_pos);
+  map.vertex = place_vertex(point_on_line, map.vertex);
+  map.edge = divide_line(map, edge_index);
 
 }
 
@@ -50,9 +51,10 @@ t_map create_mid_line_vertex(t_map map, t_coord world_pos)
   int edge_index;
   t_coord point_on_line;
 
-  if((edge_index = line_is_close) != -1)
+  if((edge_index = line_is_close(map, world_pos)) != -1)
   {
     point_on_line = get_closest_point_on_line(map, world_pos, edge_index);
     map = create_mid_vertex(map, edge_index, point_on_line)
   }
+  return(map);
 }

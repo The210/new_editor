@@ -1,11 +1,11 @@
 #include "doom.h"
 
-int get_line_distance(t_map map, t_coord world_pos, int i)
+int get_line_distance(t_map map, t_coord world_pos, int edge_index)
 {
   t_wall line;
   int distance;
 
-  line = get_line_coordinates(map, i);
+  line = get_line_coordinates(map, edge_index);
   distance = (abs((line.end.y - line.start.y) * (world_pos.x) - (line.end.x - line.start.x) * (world_pos.y) + (line.end.x * line.start.y) - (line.end.y * line.start.x)) / (sqrt(pow(line.end.y - line.start.y, 2) + pow(line.end.x - line.start.x, 2))));
   return(distance);
 }
