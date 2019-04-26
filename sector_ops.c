@@ -2,7 +2,7 @@
 
 t_map extrude_sector_start(t_map map, t_coord world_pos)
 {
-  return (line_is_close(map, world_pos)) != -1));
+  return (line_is_close(map, world_pos)) != -1);
 }
 
 //Possible trouble with intersecting lines depending on orientation.

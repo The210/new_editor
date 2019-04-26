@@ -19,7 +19,7 @@ int line_is_close(t_map map, t_coord world_pos)
 
   i = -1;
   min_distance = 100;
-  while(++i < map.edge.len)
+  while(++i < map.edge_len)
   {
     distance = get_line_distance(map, world_pos, i);
     if (distance < min_distance)
@@ -31,7 +31,7 @@ int line_is_close(t_map map, t_coord world_pos)
   return (min_distance <= 10 ? closest_edge : -1);
 }
 
-t_coord get_closest_point_on_line(t_map map, t_coords world_pos, int edge_index)
+t_coord get_closest_point_on_line(t_map map, t_coord world_pos, int edge_index)
 {
   t_wall line;
   t_coord distance_to_start;

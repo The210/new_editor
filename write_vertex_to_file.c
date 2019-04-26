@@ -9,7 +9,7 @@ void write_start_coordinate(t_coord pos, int fd)
   ft_putchar_fd(' ', fd);
 }
 
-void write_x_coordinate(int y, int fd)
+void write_x_coordinate(int x, int fd)
 {
   ft_putnbr_fd(x, fd);
   ft_putchar_fd(' ', fd);
