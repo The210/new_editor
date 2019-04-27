@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 21:33:46 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 01:01:46 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 01:51:07 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,3 +107,4 @@ t_map			check_mouse_events(t_wind wind, t_map map, t_coord mouse_pos);
 int				select_vertex_to_move(t_map map, t_coord mouse_pos);
 t_map			translate_vertex(t_map map, int vertex_to_mv_index, t_coord new_vertex_pos);
 int				get_point_distance(t_coord a, t_coord b);
+int				point_in_segment(t_map map, t_coord point_in_line, int edge_index);

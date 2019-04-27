@@ -6,11 +6,30 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:30 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 00:17:38 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 01:51:14 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+
+int	get_point_distance(t_coord a, t_coord b)
+{
+	return (sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2)));
+}
+
+int	point_in_segment(t_map map, t_coord point_in_line, int edge_index)
+{
+	double distance_to_start;
+	double distance_to_end;
+	double segment_distance;
+	
+	distance_to_start = get_point_distance(point_in_line, map.vertex[map.edges[edge_index].x]);
+	distance_to_end = get_point_distance(point_in_line, map.vertex[map.edges[edge_index].y]);
+	segment_distance = get_point_distance(map.vertex[map.edges[edge_index].x], map.vertex[map.edges[edge_index].y]);
+	if (distance_to_start < segment_distance && distance_to_end < segment_distance)
+		return (1);
+	return (0);
+}
 
 int get_line_distance(t_map map, t_coord world_pos, int edge_index)
 {
@@ -20,11 +39,6 @@ int get_line_distance(t_map map, t_coord world_pos, int edge_index)
 	line = get_line_coordinates(map, edge_index);
 	distance = (abs((line.end.y - line.start.y) * (world_pos.x) - (line.end.x - line.start.x) * (world_pos.y) + (line.end.x * line.start.y) - (line.end.y * line.start.x)) / (sqrt(pow(line.end.y - line.start.y, 2) + pow(line.end.x - line.start.x, 2))));
 	return(distance);
-}
-
-int	get_point_distance(t_coord a, t_coord b)
-{
-	return (sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2)));
 }
 
 int line_is_close(t_map map, t_coord world_pos)
@@ -47,27 +61,6 @@ int line_is_close(t_map map, t_coord world_pos)
 	}
 	return (min_distance <= 10 ? closest_edge : -1);
 }
-
-/*t_coord get_closest_point_on_line(t_map map, t_coord world_pos, int edge_index)
-{
-	t_wall line;
-	t_coord distance_to_start;
-	t_coord line_coords_length;
-	t_coord point_on_line;
-	double scalar;
-	int line_length;
-
-	line = get_line_coordinates(map, edge_index);
-	distance_to_start.x = line.start.x - world_pos.x;
-	distance_to_start.y = line.start.y - world_pos.y;
-	line_coords_length.x = line.end.x - line.start.x;
-	line_coords_length.y = line.end.y - line.start.x;
-	scalar = (distance_to_start.x * line_coords_length.x) + (distance_to_start.y * line_coords_length.y);
-	line_length = sqrt(line_coords_length.x + line_coords_length.y);
-	point_on_line.x = line.start.x - ((int)(((scalar) / (pow(line_length, 2))) * line_coords_length.x));
-	point_on_line.y = line.start.y - ((int)(((scalar) / (pow(line_length, 2))) * line_coords_length.y));
-	return(point_on_line);
-}*/
 
 t_coord	get_closest_point_on_line(t_map map, t_coord world_pos, int edge_index)
 {

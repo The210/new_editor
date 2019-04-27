@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:51 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/27 22:41:08 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 01:51:33 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,11 @@ t_map create_mid_line_vertex(t_map map, t_coord world_pos)
 	if((edge_index = line_is_close(map, world_pos)) != -1)
 	{
 		point_on_line = get_closest_point_on_line(map, world_pos, edge_index);
-		map = create_mid_vertex(map, point_on_line);
-		map = divide_line(map, edge_index);
+		if (point_in_segment(map, point_on_line, edge_index))
+		{
+			map = create_mid_vertex(map, point_on_line);
+			map = divide_line(map, edge_index);
+		}
 	}
 	return(map);
 }
