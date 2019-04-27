@@ -6,22 +6,38 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 21:33:46 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/26 21:23:10 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 01:01:46 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "math.h"
 #include "SDL.h"
+#include "libft/libft.h"
 
 #define SCREEN_WIDTH 1000
 #define SCREEN_HEIGHT 1000
 
+typedef struct	s_pixels
+{
+	Uint32		*pixels;
+	Uint32		pixel;
+	Uint32		color;
+	Uint8		r;
+	Uint8		g;
+	Uint8		b;
+}				t_pixel;
 
 typedef struct	s_coord
 {
 	int			x;
 	int			y;
 }				t_coord;
+
+typedef struct	s_wall
+{
+	t_coord		start;
+	t_coord		end;
+}				t_wall;
 
 typedef	struct	s_line
 {
@@ -63,12 +79,31 @@ typedef struct	s_map
 	int			sector_length;
 }				t_map;
 
-int		ft_draw_line(t_wind wind, t_coord point, t_coord next_point, t_line line);
-t_map	create_edge(t_coord vertex_indexes, t_coord *edges); // Check this out!
-t_map	divide_line(t_map map, int edge_index);
-int		get_line_distance(t_map map, t_coord world_pos, int edge_index);
-int		line_is_close(t_map map, t_coord world_pos);
-t_coord get_closest_point_on_line(t_map map, t_coord world_pos, int edge_index);
-void	draw_window(t_map map, t_wind wind);
-void	write_vertexes(t_map map, int fd);
-t_wind	init_wind(t_wind wind);
+int				ft_draw_line(t_wind wind, t_coord point, t_coord next_point, t_line line);
+t_coord			*create_edge(t_coord vertex_indexes, t_coord *edges, int edge_length);
+t_map			divide_line(t_map map, int edge_index);
+int				get_line_distance(t_map map, t_coord world_pos, int edge_index);
+int				line_is_close(t_map map, t_coord world_pos);
+t_coord		 	get_closest_point_on_line(t_map map, t_coord world_pos, int edge_index);
+void			draw_window(t_map map, t_wind wind);
+void			write_vertexes(t_map map, int fd);
+t_wind			init_wind(t_wind wind);
+void			put_pixel32(SDL_Surface *surface, int x, int y, Uint32 pixel);
+t_wall			get_line_coordinates(t_map map, int i);
+int				extrude_sector_start(t_map map, t_coord world_pos);
+t_map			extrude_sector_result(t_map map, t_coord world_pos, int edge_index, t_wall new_vertex_vectors);
+t_coord			*place_vertex(t_coord new_vertex_pos, t_coord *vertex, int vertex_length);
+t_sector		initialize_sector(t_map map);
+t_coord			*initialize_vertex(t_map map);
+t_coord			*initialize_edges(t_map map);
+t_map			initialize_values(void);
+void			exit_on_error(void);
+void			clean_and_exit(t_wind wind);
+t_wind			init_wind(t_wind wind);
+t_map			check_key_press(t_wind wind, t_map map, t_coord mouse_pos);
+void			draw_square(t_wind wind, t_coord vertex, int square_size);
+t_map			create_mid_line_vertex(t_map map, t_coord world_pos);
+t_map			check_mouse_events(t_wind wind, t_map map, t_coord mouse_pos);
+int				select_vertex_to_move(t_map map, t_coord mouse_pos);
+t_map			translate_vertex(t_map map, int vertex_to_mv_index, t_coord new_vertex_pos);
+int				get_point_distance(t_coord a, t_coord b);
