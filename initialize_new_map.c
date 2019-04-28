@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:18:45 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 03:21:25 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 04:12:56 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_sector	initialize_sector(t_map map)
 {
 	int i;
 
-	if ((map.sector[0].edges = (int*)malloc(sizeof(t_coord) * (200))) == NULL)
+	if ((map.sector[0].edges = (int*)malloc(sizeof(t_coord) * (500))) == NULL)
 		exit_on_error();
 	i = -1;
 	while (++i < 4)
@@ -58,11 +58,11 @@ t_map	initialize_values(void)
 {
 	t_map map;
 
-	if ((map.vertex = (t_coord*)malloc(sizeof(t_coord) * (200))) == NULL)
+	if ((map.vertex = (t_coord*)malloc(sizeof(t_coord) * (1000))) == NULL)
 		exit_on_error();
 	if ((map.edges = (t_coord*)malloc(sizeof(t_coord) * (1000))) == NULL)
 		exit_on_error();
-	if ((map.sector = (t_sector*)malloc(sizeof(t_sector) * (1000))) == NULL)
+	if ((map.sector = (t_sector*)malloc(sizeof(t_sector) * (200))) == NULL)
 		exit_on_error();
 	map.vertex = initialize_vertex(map);
 	map.edges = initialize_edges(map);

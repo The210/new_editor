@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:30 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 03:11:25 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 21:16:05 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,22 @@ int get_line_distance(t_map map, t_coord world_pos, int edge_index)
 	return(distance);
 }
 
-int line_is_close(t_map map, t_coord world_pos)
+int line_is_close(t_map map, t_coord world_pos, int i)
 {
 	int distance;
 	int min_distance;
-	int i;
 	int closest_edge;
 
-	i = -1;
 	min_distance = 25;
-	while(++i < map.edges_length)
+	while (++i < map.edges_length)
 	{
 		distance = get_line_distance(map, world_pos, i);
 		if (distance < min_distance)
 		{
 			min_distance = distance;
 			closest_edge = i;
+			if (min_distance <= 10)
+				return (i);
 		}
 	}
 	return (min_distance <= 10 ? closest_edge : -1);

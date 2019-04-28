@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 22:06:04 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/27 21:37:57 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 18:55:20 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ t_map divide_line(t_map map, int edge_index)
 	tmp.x = map.vertex_length - 1;
 	tmp.y = map.edges[edge_index].y;
 	map.edges[edge_index].y = tmp.x;
-
 	map.edges = create_edge(tmp, map.edges, map.edges_length);
 	map.edges_length += 1;
 	return (map);
