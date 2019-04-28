@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:18:45 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/27 21:44:10 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 03:21:25 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ t_sector	initialize_sector(t_map map)
 {
 	int i;
 
-	if ((map.sector[0].edges = (t_coord*)malloc(sizeof(t_coord) * (4 + 10))) == NULL)
+	if ((map.sector[0].edges = (int*)malloc(sizeof(t_coord) * (200))) == NULL)
 		exit_on_error();
 	i = -1;
 	while (++i < 4)
-		map.sector[0].edges[i] = map.edges[i];
+		map.sector[0].edges[i] = i;
 	map.sector[0].num = 0;
 	map.sector[0].ceil_height = 40;
 	map.sector[0].floor_height = 20;
+	map.sector[0].edges_length = 4;
 	return(map.sector[0]);
 }
 

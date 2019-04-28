@@ -6,11 +6,24 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:30 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 01:51:14 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 03:11:25 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+
+int	vector_cross_product(t_wall a, t_wall b)
+{
+	t_coord a_to_middle;
+	t_coord middle_to_b;
+
+	a_to_middle.x = a.end.x - a.start.x;
+	a_to_middle.y = a.end.y - a.start.y;
+	middle_to_b.x = b.end.x - b.start.x;
+	middle_to_b.y = b.end.y - b.start.y;
+
+	return(a_to_middle.x * middle_to_b.y - middle_to_b.x * a_to_middle.y);
+}
 
 int	get_point_distance(t_coord a, t_coord b)
 {

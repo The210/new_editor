@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 23:07:05 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 00:59:43 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 02:54:38 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ int		select_vertex_to_move(t_map map, t_coord mouse_pos)
 
 t_map	translate_vertex(t_map map, int vertex_to_mv_index, t_coord new_vertex_pos)
 {
-	//Add check taking vertex_pos here to confirm convexity and check for intersections.
+	t_coord tmp;
+	tmp = map.vertex[vertex_to_mv_index];
 	map.vertex[vertex_to_mv_index] = new_vertex_pos;
+	if (!geometry_is_valid(map)){
+		map.vertex[vertex_to_mv_index] = tmp;
+		printf("Not valid!!!\n");
+	}
 	return (map);
 }

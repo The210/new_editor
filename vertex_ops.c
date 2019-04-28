@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:51 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 01:51:33 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/28 03:22:45 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,14 @@ t_coord *realloc_place_vertex(t_coord new_vertex_pos, t_coord *vertex, int verte
 		new_vlist[new_vlist_length - 1].y = new_vertex_pos.y;
 		free(vertex);
 	}
-	/*else
-	  {
-	  new_vlist = (t_coord*)malloc(sizeof(t_coord) * 10);
-	  new_vlist_length = 1;
-	  new_vlist[0].x = new_vertex_pos.x;
-	  new_vlist[0].y = new_vertex_pos.y;
-	  }*/
 	return(new_vlist);
 }
 
 t_coord *place_vertex(t_coord new_vertex_pos, t_coord *vertex, int vertex_length)
 {
-	if ((vertex_length + 50) % 1000 < 10) {
-		printf("wot");
+	if ((vertex_length + 50) % 1000 == 0)
 		vertex = realloc_place_vertex(new_vertex_pos, vertex, vertex_length);
-	}else
+	else
 		vertex[vertex_length] = new_vertex_pos;
 	return (vertex);
 }
@@ -80,6 +72,7 @@ t_map create_mid_line_vertex(t_map map, t_coord world_pos)
 		{
 			map = create_mid_vertex(map, point_on_line);
 			map = divide_line(map, edge_index);
+			map = add_edge_to_sector(map, edge_index);
 		}
 	}
 	return(map);
