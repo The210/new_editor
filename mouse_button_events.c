@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 00:29:48 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 23:14:21 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/29 03:03:00 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int		check_right_mouse_press(t_wind wind, t_map map, t_coord mouse_pos)
 }
 
 t_map	check_right_mouse_release(t_wind wind, t_map map,
-		t_coord mouse_pos, int edge_index, t_coord start_mouse_pos);
+		t_coord mouse_pos, int edge_index, t_coord start_mouse_pos)
 {
-	map = extrue_sector(map, edge_index, start_mouse_pos, mouse_pos);
+	if (edge_index != -1)
+		map = extrude_sector(map, edge_index, start_mouse_pos, mouse_pos);
 	return (map);
 }
 
@@ -47,20 +48,20 @@ t_map	check_mouse_events(t_wind wind, t_map map, t_coord mouse_pos)
 
 	if (wind.event.type == SDL_MOUSEBUTTONDOWN)
 	{
-		if (wind.event.type == SDL_BUTTON_LEFT)
-			vertex_index = check__left_mouse_press(wind, map, mouse_pos);
+		if (wind.event.button.button == SDL_BUTTON_LEFT)
+			vertex_index = check_left_mouse_press(wind, map, mouse_pos);
 		else
 		{
-			edge_index = check_right_mouse_press(t_wind wind, t_map map, t_coord mouse_pos);
+			edge_index = check_right_mouse_press(wind, map, mouse_pos);
 			start_mouse_pos = mouse_pos;
 		}
 	}
 	if (wind.event.type == SDL_MOUSEBUTTONUP)
 	{
-		if (wind.event.type == SDL_BUTTON_LEFT)
+		if (wind.event.button.button == SDL_BUTTON_LEFT)
 			map = check_left_mouse_release(wind, map, mouse_pos, vertex_index);
 		else
-			map = check_right_mouse_release(wind, map, mouse_pos, vertex_index, start_mouse_pos);
+			map = check_right_mouse_release(wind, map, mouse_pos, edge_index, start_mouse_pos);
 	}
 	return (map);
 }

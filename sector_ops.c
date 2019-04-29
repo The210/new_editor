@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:46 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 23:18:49 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/29 02:59:11 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,19 @@ t_map		create_new_sector(t_map map, int edge_to_extrude)
 	int i;
 	int j;
 
-	map.sector[map.sector_length].num = ap.sector_length;
+	map.sector[map.sector_length].num = map.sector_length;
 	map.sector[map.sector_length].edges_length = 4;
 	map.sector[map.sector_length].ceil_height = 40;
 	map.sector[map.sector_length].floor_height = 20;
 	if ((map.sector[map.sector_length].edges = (int*)malloc(sizeof(t_coord) * (250))) == NULL)
-		exit_in_error();
+		exit_on_error();
 	i = map.edges_length - 4;
 	j = 0;
 	while (++i < map.edges_length)
-		map.sector[map.sector_length].edges[j++] = map.edges[i];
+		map.sector[map.sector_length].edges[j++] = i;
 	map.sector[map.sector_length].edges[j] = edge_to_extrude;
-	map.sector_length++
+	map.sector_length++;
+	return (map);
 }
 
 t_map		extrude_sector(t_map map, int edge_to_extrude, t_coord extrude_start, t_coord extrude_end)
@@ -128,10 +129,28 @@ t_map		extrude_sector(t_map map, int edge_to_extrude, t_coord extrude_start, t_c
 int			select_edge_to_extrude(t_map map, t_coord mouse_pos)
 {
 	int i;
+	int	min_dist_allowed;
+	int	current_dist;
+	int min_dist_found;
+	t_coord closest_point;
+	int	edge_index;
 
 	i = -1;
-	while (i < map.edges_length)
+	min_dist_allowed = 10;
+	min_dist_found = 11;
+	while (++i < map.edges_length)
 	{
-
+		closest_point = get_closest_point_on_line(map, mouse_pos, i);
+		if (point_in_segment(map, closest_point, i))
+			current_dist = get_point_distance(closest_point, mouse_pos);
+		else
+			continue;
+		//current_dist = better_get_ln_dist(map, mouse_pos, i);
+		if (current_dist < min_dist_found)
+		{
+			min_dist_found = current_dist;
+			edge_index = i;
+		}
 	}
+	return (min_dist_found <= min_dist_allowed ? edge_index : -1);
 }

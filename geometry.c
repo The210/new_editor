@@ -6,11 +6,16 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:30 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 21:16:05 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/29 02:45:57 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+
+int	dot_product(t_coord a, t_coord b)
+{
+	return (a.x * b.x + a.y * b.y);
+}
 
 int	vector_cross_product(t_wall a, t_wall b)
 {
@@ -35,13 +40,47 @@ int	point_in_segment(t_map map, t_coord point_in_line, int edge_index)
 	double distance_to_start;
 	double distance_to_end;
 	double segment_distance;
-	
+
 	distance_to_start = get_point_distance(point_in_line, map.vertex[map.edges[edge_index].x]);
 	distance_to_end = get_point_distance(point_in_line, map.vertex[map.edges[edge_index].y]);
 	segment_distance = get_point_distance(map.vertex[map.edges[edge_index].x], map.vertex[map.edges[edge_index].y]);
 	if (distance_to_start < segment_distance && distance_to_end < segment_distance)
 		return (1);
 	return (0);
+}
+
+int min (int a, int b)
+{
+	return (a > b ? b : a);
+}
+
+int	max(int a, int b)
+{
+	return (a > b ? a : b);
+}
+
+int	better_get_ln_dist(t_map map, t_coord mouse_pos, int edge_index)
+{
+	t_wall line;
+	int line_length_sq;
+	double t;
+	int distance;
+	t_coord to_point;
+	t_coord to_end;
+	t_coord projection;
+
+	line = get_line_coordinates(map, edge_index);
+	to_point.x = mouse_pos.x - line.start.x;
+	to_point.y = mouse_pos.y - line.start.y;
+	to_end.x = line.end.x - line.start.x;
+	to_end.y = line.end.y - line.start.y;
+
+	line_length_sq = pow(line.end.x - line.start.x, 2) + pow(line.end.y - line.start.y, 2);
+	
+	t = max(0, min(1, dot_product(to_point, to_end) / line_length_sq));
+	projection.x = line.start.x + t * (to_end.x);
+	projection.y = line.start.y + t * (to_end.y);
+	return (get_point_distance(projection, mouse_pos));
 }
 
 int get_line_distance(t_map map, t_coord world_pos, int edge_index)
