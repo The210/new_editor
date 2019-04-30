@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:41 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 01:05:46 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/29 18:27:34 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	clean_and_exit(t_wind wind)
 void	exit_on_error(void)
 {
 	ft_putendl("There was an error starting the program");
+//	SDL_DestroyWindow(wind.window);
+	SDL_Quit();
 	exit(1);
 	//TO DO: close fd's, manage leaks, etc.
 }

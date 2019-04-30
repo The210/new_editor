@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:18:45 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 04:12:56 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/29 23:19:24 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_sector	initialize_sector(t_map map)
 {
 	int i;
 
-	if ((map.sector[0].edges = (int*)malloc(sizeof(t_coord) * (500))) == NULL)
+	if ((map.sector[0].edges = (int*)malloc(sizeof(int) * (500))) == NULL)
 		exit_on_error();
 	i = -1;
 	while (++i < 4)

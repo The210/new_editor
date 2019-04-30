@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 23:07:05 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 21:07:56 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/30 19:59:09 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,19 @@ t_map	translate_vertex(t_map map, int vertex_to_mv_index, t_coord new_vertex_pos
 	t_coord tmp;
 	tmp = map.vertex[vertex_to_mv_index];
 	map.vertex[vertex_to_mv_index] = new_vertex_pos;
-	if (!geometry_is_valid(map)){
+	if (!geometry_is_valid(map)) {
 		map.vertex[vertex_to_mv_index] = tmp;
 		printf("Not valid!!!\n");
 	}
+/*	int i = -1;
+	int j;
+	while (++i < map.sector_length)
+	{
+		j = -1;
+		while (++j < map.sector[i].edges_length)
+			printf("map.sector[%i].edge[%i]: %i\n", i, j, map.sector[i].edges[j]);
+	}*/
+	//printf("\n\n");
 	remove_all_duped_vertex(map);
 	return (map);
 }

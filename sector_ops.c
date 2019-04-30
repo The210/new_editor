@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:46 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/29 02:59:11 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/04/30 21:45:09 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ t_map		create_new_sector(t_map map, int edge_to_extrude)
 {
 	int i;
 	int j;
+	t_coord last_sector_edge;
 
 	map.sector[map.sector_length].num = map.sector_length;
 	map.sector[map.sector_length].edges_length = 4;
@@ -109,7 +110,11 @@ t_map		create_new_sector(t_map map, int edge_to_extrude)
 	j = 0;
 	while (++i < map.edges_length)
 		map.sector[map.sector_length].edges[j++] = i;
-	map.sector[map.sector_length].edges[j] = edge_to_extrude;
+	last_sector_edge.x = map.edges[edge_to_extrude].y;
+	last_sector_edge.y = map.edges[edge_to_extrude].x;
+	map.edges = create_edge(last_sector_edge, map.edges, map.edges_length);
+	map.sector[map.sector_length].edges[j] = map.edges_length;
+	map.edges_length++;
 	map.sector_length++;
 	return (map);
 }
@@ -117,12 +122,19 @@ t_map		create_new_sector(t_map map, int edge_to_extrude)
 t_map		extrude_sector(t_map map, int edge_to_extrude, t_coord extrude_start, t_coord extrude_end)
 {
 	t_coord extrude_vector;
+	t_map	map2;
+	int		i;
 
 	extrude_vector.x = extrude_end.x - extrude_start.x;
 	extrude_vector.y = extrude_end.y - extrude_start.y;
 	map = create_new_vertexes(map, edge_to_extrude, extrude_vector);
 	map = connect_new_edges(map, edge_to_extrude);
-	map = create_new_sector(map, edge_to_extrude); //prolly need otherstuff
+	map = create_new_sector(map, edge_to_extrude);
+	if ((nested_extrude(map) || !(geometry_is_valid(map))))
+	{
+		map = remove_latest_sector(map);
+		printf("Invalid extrude!\n");
+	}
 	return (map);
 }
 
@@ -145,7 +157,6 @@ int			select_edge_to_extrude(t_map map, t_coord mouse_pos)
 			current_dist = get_point_distance(closest_point, mouse_pos);
 		else
 			continue;
-		//current_dist = better_get_ln_dist(map, mouse_pos, i);
 		if (current_dist < min_dist_found)
 		{
 			min_dist_found = current_dist;
