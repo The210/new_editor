@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:21 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/01 01:58:52 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/01 20:21:48 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ t_map	check_key_up(t_wind wind, t_map map, t_coord mouse_pos)
 	int sector_num;
 
 	if (wind.event.key.keysym.sym == SDLK_ESCAPE)
+	{
+		write_fd(map);
 		clean_and_exit(wind);
+	}
 	else if (wind.event.key.keysym.sym == SDLK_v)
 		map = create_mid_line_vertex(map, mouse_pos);
 	else if	(wind.event.key.keysym.sym == SDLK_s)

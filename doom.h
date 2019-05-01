@@ -6,11 +6,12 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 21:33:46 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/01 01:33:52 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/01 20:31:28 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "math.h"
+#include <math.h>
+#include <fcntl.h>
 #include "SDL.h"
 #include "libft/libft.h"
 
@@ -142,6 +143,7 @@ int				line_intersects(t_coord p1, t_coord q1, t_coord p2, t_coord q2);
 int				in_sector_full(t_map map, t_coord point);
 int				player_outside(t_map map);
 int				sprite_outside(t_map map);
+int				get_fd_index(t_map map, t_coord to_find);
 void			exit_on_error(void);
 void			draw_square(t_wind wind, t_coord vertex, int square_size, int color);
 void			put_pixel32(SDL_Surface *surface, int x, int y, Uint32 pixel);
@@ -150,3 +152,5 @@ void			draw_window(t_map map, t_wind wind);
 void			write_vertexes(t_map map, int fd);
 void			free_map(t_map map);
 void			draw_rectangle(t_coord start, t_coord end, t_wind wind);
+void			write_fd(t_map map);
+void			write_neighbours(t_map map, int s_num, int fd);
