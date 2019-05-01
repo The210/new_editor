@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 21:33:46 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/30 22:00:00 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/01 01:33:52 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct	s_sector
 
 typedef struct	s_player
 {
-	double		angle;
 	int			sector_num;
 	t_coord		pos;
 }				t_player;
@@ -101,6 +100,9 @@ typedef struct	s_map
 	int			vertex_length;
 	int			edges_length;
 	int			sector_length;
+	int			selected_sector;
+	int			sprite_g_len;
+	int			sprite_r_len;
 }				t_map;
 
 t_sector		initialize_sector(t_map map);
@@ -137,10 +139,14 @@ int				select_edge_to_extrude(t_map map, t_coord mouse_pos);
 int				in_sector(t_map map, t_coord point);
 int				nested_extrude(t_map map);
 int				line_intersects(t_coord p1, t_coord q1, t_coord p2, t_coord q2);
+int				in_sector_full(t_map map, t_coord point);
+int				player_outside(t_map map);
+int				sprite_outside(t_map map);
 void			exit_on_error(void);
-void			draw_square(t_wind wind, t_coord vertex, int square_size);
+void			draw_square(t_wind wind, t_coord vertex, int square_size, int color);
 void			put_pixel32(SDL_Surface *surface, int x, int y, Uint32 pixel);
 void			clean_and_exit(t_wind wind);
 void			draw_window(t_map map, t_wind wind);
 void			write_vertexes(t_map map, int fd);
 void			free_map(t_map map);
+void			draw_rectangle(t_coord start, t_coord end, t_wind wind);

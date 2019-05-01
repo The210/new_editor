@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:18:45 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/29 23:19:24 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/01 01:43:07 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,20 @@ t_map	initialize_values(void)
 		exit_on_error();
 	if ((map.sector = (t_sector*)malloc(sizeof(t_sector) * (200))) == NULL)
 		exit_on_error();
+	if ((map.g_sprite = (t_sprite_g*)malloc(sizeof(t_sprite_g) * (200))) == NULL)
+		exit_on_error();
+	if ((map.r_sprite = (t_sprite_r*)malloc(sizeof(t_sprite_r) * (200))) == NULL)
+		exit_on_error();
 	map.vertex = initialize_vertex(map);
 	map.edges = initialize_edges(map);
 	map.sector[0] = initialize_sector(map);
 	map.vertex_length = 4;
 	map.edges_length = 4;
 	map.sector_length = 1;
+	map.player.sector_num = 0;
+	map.player.pos.x = 300;
+	map.player.pos.y = 300;
+	map.sprite_g_len = 0;
+	map.sprite_r_len = 0;
 	return(map);
 }

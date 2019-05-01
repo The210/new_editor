@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 02:03:20 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 18:28:06 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/01 01:35:31 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,9 @@ int	geometry_is_valid(t_map map)
 		return (0);
 	if (there_are_intersections(map))
 		return(0);
+	if (player_outside(map))
+		return (0);
+	if (sprite_outside(map))
+		return (0);
 	return (1);
 }

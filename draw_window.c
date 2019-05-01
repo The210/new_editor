@@ -6,13 +6,28 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 20:54:26 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 01:11:28 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/01 01:49:58 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-void draw_square(t_wind wind, t_coord vertex, int square_size)
+void	draw_sector_altitude(t_wind wind, t_map map)
+{	
+	t_coord start;
+	t_coord end;
+
+	if (map.selected_sector != -1)
+	{
+		start.x = 50;
+		end.x = 70;
+		start.y = SCREEN_HEIGHT - map.sector[map.selected_sector].ceil_height;
+		end.y = SCREEN_HEIGHT - map.sector[map.selected_sector].floor_height;
+		draw_rectangle(start, end, wind);
+	}
+}
+
+void	draw_square(t_wind wind, t_coord vertex, int square_size, int color)
 {
 	int i;
 	int j;
@@ -29,13 +44,13 @@ void draw_square(t_wind wind, t_coord vertex, int square_size)
 		while (++j < square_size)
 		{
 			if (pixel.x >= 0 && pixel.y >= 0 && pixel.x < SCREEN_WIDTH && pixel.x++ < SCREEN_HEIGHT)
-				put_pixel32(wind.screen, pixel.x, pixel.y, 0xffffff);
+				put_pixel32(wind.screen, pixel.x, pixel.y, color);
 		}
 		pixel.y++;
 	}
 }
 
-void draw_edges(t_map map, t_wind wind)
+void	draw_edges(t_map map, t_wind wind)
 {
 	int i;
 	t_line line_draw;
@@ -50,19 +65,39 @@ void draw_edges(t_map map, t_wind wind)
 	}
 }
 
-void draw_vertex(t_map map, t_wind wind)
+void	draw_char(t_map map, t_wind wind)
+{
+	draw_square(wind, map.player.pos, 7, 0x00ff00);
+}
+
+void	draw_sprites(t_map map, t_wind wind)
+{
+	int i;
+
+	i = -1;
+	while (++i < map.sprite_g_len)
+		draw_square(wind, map.g_sprite[i].pos, 3, 0xffff00);
+	i = -1;
+	while (++i < map.sprite_r_len)
+		draw_square(wind, map.r_sprite[i].pos, 3, 0x00ffff);
+}
+
+void	draw_vertex(t_map map, t_wind wind)
 {
 	int i;
 
 	i = -1;
 	while (++i < map.vertex_length)
-		draw_square(wind, map.vertex[i], 5);
+		draw_square(wind, map.vertex[i], 5, 0xffffff);
 }
 
-void draw_window(t_map map, t_wind wind)
+void	draw_window(t_map map, t_wind wind)
 {
 	SDL_FillRect(wind.screen, NULL, 0x000000);
 	draw_vertex(map, wind);
 	draw_edges(map, wind);
+	draw_sector_altitude(wind, map);
+	draw_sprites(map, wind);
+	draw_char(map, wind);
 	SDL_UpdateWindowSurface(wind.window);
 }

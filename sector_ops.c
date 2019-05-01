@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:46 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/30 21:45:09 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/01 02:13:38 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ t_map		extrude_sector(t_map map, int edge_to_extrude, t_coord extrude_start, t_c
 
 	extrude_vector.x = extrude_end.x - extrude_start.x;
 	extrude_vector.y = extrude_end.y - extrude_start.y;
+	if (sqrt(pow(extrude_vector.x, 2) + pow(extrude_vector.y, 2)) < 5)
+		return(map);
 	map = create_new_vertexes(map, edge_to_extrude, extrude_vector);
 	map = connect_new_edges(map, edge_to_extrude);
 	map = create_new_sector(map, edge_to_extrude);
