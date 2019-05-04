@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 21:33:46 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 14:13:35 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/05 00:48:26 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ typedef struct	s_map
 	int			selected_sector;
 	int			sprite_g_len;
 	int			sprite_r_len;
-	int			i;
-	int			j;
+	size_t		i;
+	size_t		j;
 }				t_map;
 
 t_sector		initialize_sector(t_map map);

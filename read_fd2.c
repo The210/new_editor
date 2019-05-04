@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:58:43 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 14:21:01 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/05 00:44:05 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ t_map	init_map(t_map map)
 	if ((map.edges = (t_coord*)malloc(sizeof(t_coord) * (1000))) == NULL)
 		exit_on_error();
 	if ((map.sector = (t_sector*)malloc(sizeof(t_sector) * (200))) == NULL)
+		exit_on_error();
+	if ((map.g_sprite = (t_sprite_g*)malloc(sizeof(t_sprite_g) * 200)) == NULL)
+		exit_on_error();
+	if ((map.r_sprite = (t_sprite_r*)malloc(sizeof(t_sprite_r) * 200)) == NULL)
 		exit_on_error();
 	return (map);
 }

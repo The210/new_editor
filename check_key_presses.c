@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:21 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 22:30:27 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/05 00:49:57 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_map	check_key_up(t_wind wind, t_map map, t_coord mouse_pos)
 {
 	int sector_num;
 
+	sector_num = -1;
 	if (wind.event.key.keysym.sym == SDLK_ESCAPE)
 	{
 		write_fd(map);
