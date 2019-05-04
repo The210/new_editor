@@ -6,40 +6,16 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:51 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 10:02:41 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 22:31:47 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
 
-t_coord	*realloc_place_vertex(t_coord new_vertex_pos,
-		t_coord *vertex, int vertex_length)
-{
-	t_coord	*new_vlist;
-	int		new_vlist_length;
-	int		i;
-
-	if (vertex_length > 0)
-	{
-		new_vlist = (t_coord*)malloc(sizeof(t_coord) * (vertex_length + 1000));
-		i = -1;
-		while (++i < vertex_length)
-			new_vlist[i] = vertex[i];
-		new_vlist_length = vertex_length + 1;
-		new_vlist[new_vlist_length - 1].x = new_vertex_pos.x;
-		new_vlist[new_vlist_length - 1].y = new_vertex_pos.y;
-		free(vertex);
-	}
-	return (new_vlist);
-}
-
 t_coord	*place_vertex(t_coord new_vertex_pos,
 		t_coord *vertex, int vertex_length)
 {
-	if ((vertex_length + 50) % 1000 == 0)
-		vertex = realloc_place_vertex(new_vertex_pos, vertex, vertex_length);
-	else
-		vertex[vertex_length] = new_vertex_pos;
+	vertex[vertex_length] = new_vertex_pos;
 	return (vertex);
 }
 

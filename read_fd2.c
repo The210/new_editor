@@ -6,11 +6,33 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:58:43 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 13:13:17 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 14:21:01 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+
+int		ft_iatoi(char *wall, int index)
+{
+	int number;
+	int i;
+	int	negative;
+
+	i = index;
+	negative = 1;
+	number = 0;
+	if (wall[index] == '-')
+	{
+		i++;
+		negative = -1;
+	}
+	while (wall[i] && wall[i] >= '0' && wall[i] <= '9')
+	{
+		number = number * 10 + wall[i] - '0';
+		i++;
+	}
+	return (number * negative);
+}
 
 t_map	init_map(t_map map)
 {
@@ -46,13 +68,28 @@ t_map	read_player(t_map map, char **txt)
 	return (map);
 }
 
-t_map	make_read_decision(t_map map, char **txt)
+t_map	make_read_decision(t_map map, char **txt, int strlen)
 {
 	if (txt[map.i][map.j] == 'v')
 		map = read_vertex(map, txt);
 	else if (txt[map.i][map.j] == 's')
 		map = read_sector(map, txt);
 	else if (txt[map.i][map.j] == 'p')
-		map = read_player(map, txt);
+	{
+		while (map.j < strlen && (txt[map.i][map.j] < '0' ||
+					txt[map.i][map.j] > '9'))
+			map.j++;
+		map.player.pos.x = ft_iatoi(txt[map.i], map.j);
+		while (map.j < strlen && !(txt[map.i][map.j] < '0' ||
+					txt[map.i][map.j] > '9'))
+			map.j++;
+		map.j++;
+		map.player.pos.y = ft_iatoi(txt[map.i], map.j);
+		while (map.j < strlen && !(txt[map.i][map.j] < '0' ||
+					txt[map.i][map.j] > '9'))
+			map.j++;
+		map.j = map.j + 3;
+		map.player.sector_num = ft_iatoi(txt[map.i], map.j);
+	}
 	return (map);
 }

@@ -6,33 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 02:48:39 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 14:03:27 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 14:20:39 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
-
-int			ft_iatoi(char *wall, int index)
-{
-	int number;
-	int i;
-	int	negative;
-
-	i = index;
-	negative = 1;
-	number = 0;
-	if (wall[index] == '-')
-	{
-		i++;
-		negative = -1;
-	}
-	while (wall[i] && wall[i] >= '0' && wall[i] <= '9')
-	{
-		number = number * 10 + wall[i] - '0';
-		i++;
-	}
-	return (number * negative);
-}
 
 char		**read_lines(int fd)
 {
@@ -111,26 +89,23 @@ t_map		read_sector(t_map map, char **txt)
 {
 	int		flag;
 	int		save;
-	size_t	strlen;
 
 	save = 0;
 	flag = 0;
-	strlen = ft_strlen(txt[map.i]) - 3;
 	map.sector[map.sector_length].edges_length = 0;
 	if ((map.sector[map.sector_length].edges =
 				(int*)malloc(sizeof(t_coord) * (500))) == NULL)
 		exit_on_error();
 	map.sector[map.sector_length].num = map.sector_length;
-	while (map.j < strlen &&
+	while (map.j < ft_strlen(txt[map.i]) - 3 &&
 			(txt[map.i][map.j] < '0' || txt[map.i][map.j] > '9'))
-		map.j++;
-	map.sector[map.sector_length].floor_height = ft_iatoi(txt[map.i], map.j);
-	while (map.j < strlen &&
+		map.sector[map.sector_length].floor_height =
+			ft_iatoi(txt[map.i], ++map.j);
+	while (map.j < ft_strlen(txt[map.i]) - 3 &&
 			txt[map.i][map.j] >= '0' && txt[map.i][map.j] <= '9')
 		map.j++;
-	map.j++;
-	map.sector[map.sector_length].ceil_height = ft_iatoi(txt[map.i], map.j);
-	while (map.j < strlen &&
+	map.sector[map.sector_length].ceil_height = ft_iatoi(txt[map.i], ++map.j);
+	while (map.j < ft_strlen(txt[map.i]) - 3 &&
 			txt[map.i][map.j] >= '0' && txt[map.i][map.j] <= '9')
 		map.j++;
 	map.j++;
@@ -143,22 +118,12 @@ t_map		read_map(void)
 	t_map	map;
 	char	**txt;
 	int		fd;
-	int		i;
 	size_t	strlen;
 
 	fd = open("map.txt", O_RDONLY);
 	txt = read_lines(fd);
 	close(fd);
-	map.i = -1;
-	map.sector_length = 0;
-	map.edges_length = 0;
-	map.vertex_length = 0;
-	if ((map.vertex = (t_coord*)malloc(sizeof(t_coord) * (1000))) == NULL)
-		exit_on_error();
-	if ((map.edges = (t_coord*)malloc(sizeof(t_coord) * (1000))) == NULL)
-		exit_on_error();
-	if ((map.sector = (t_sector*)malloc(sizeof(t_sector) * (200))) == NULL)
-		exit_on_error();
+	map = init_map(map);
 	while (txt[++map.i])
 	{
 		strlen = ft_strlen(txt[map.i]) - 2;
@@ -167,32 +132,12 @@ t_map		read_map(void)
 		{
 			if (txt[map.i][map.j] == '\n')
 				continue;
-			if (txt[map.i][map.j] == 'v')
-				map = read_vertex(map, txt);
-			else if (txt[map.i][map.j] == 's')
-				map = read_sector(map, txt);
-			else if (txt[map.i][map.j] == 'p')
-			{
-				while (map.j < strlen && (txt[map.i][map.j] < '0' ||
-							txt[map.i][map.j] > '9'))
-					map.j++;
-				map.player.pos.x = ft_iatoi(txt[map.i], map.j);
-				while (map.j < strlen && !(txt[map.i][map.j] < '0' ||
-							txt[map.i][map.j] > '9'))
-					map.j++;
-				map.j++;
-				map.player.pos.y = ft_iatoi(txt[map.i], map.j);
-				while (map.j < strlen && !(txt[map.i][map.j] < '0' ||
-							txt[map.i][map.j] > '9'))
-					map.j++;
-				map.j = map.j + 3;
-				map.player.sector_num = ft_iatoi(txt[map.i], map.j);
-			}
+			map = make_read_decision(map, txt, strlen);
 		}
 	}
-	i = -1;
-	while (++i < ft_tablen(txt))
-		free(txt[i]);
+	map.i = -1;
+	while (++map.i < ft_tablen(txt))
+		free(txt[map.i]);
 	free(txt);
 	return (map);
 }

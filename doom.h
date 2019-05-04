@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 21:33:46 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 13:15:00 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 14:13:35 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,11 @@ t_map			read_map(void);
 t_map			create_edge_on_sector(t_map map, int sector_to_change, int edge_index);
 t_map			add_edge_to_sector(t_map map, int altered_edge);
 t_map			create_new_vertexes(t_map map, int edge_to_extrude_index, t_coord extrude_vector);
-t_map			make_read_decision(t_map map, char **txt);
+t_map			make_read_decision(t_map map, char **txt, int strlen);
 t_map			init_map(t_map map);
 t_map			read_vertex(t_map map, char **txt);
 t_map			read_sector(t_map map, char **txt);
+t_map			read_player(t_map map, char **txt);
 int				sector_contains_edge(t_sector sector, int altered_edge);
 int				select_vertex_to_move(t_map map, t_coord mouse_pos);
 int				get_point_distance(t_coord a, t_coord b);

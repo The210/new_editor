@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:21 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 08:20:48 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 22:30:27 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_map	check_sprite_key(t_wind wind, t_map map, t_coord mouse_pos, int s)
 	return (map);
 }
 
-t_map	check_altitude_press(t_wind wind, t_map map, t_coord mouse_pos)
+t_map	check_altitude_press(t_wind wind, t_map map)
 {
 	if (wind.event.key.keysym.sym == SDLK_UP)
 		map.sector[map.selected_sector].ceil_height += 5;
@@ -80,7 +80,7 @@ t_map	check_key_up(t_wind wind, t_map map, t_coord mouse_pos)
 		}
 	}
 	map = check_sprite_key(wind, map, mouse_pos, sector_num);
-	map = check_altitude_press(wind, map, mouse_pos);
+	map = check_altitude_press(wind, map);
 	return (map);
 }
 
