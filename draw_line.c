@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 20:52:30 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/25 21:30:47 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 08:29:16 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ t_line	mdx(t_wind wind, t_coord point, t_coord next_point, t_line line)
 	return (line);
 }
 
-int		ft_draw_line(t_wind wind, t_coord point, t_coord next_point, t_line line)
+int		ft_draw_line(t_wind wind, t_coord point,
+		t_coord next_point, t_line line)
 {
 	if (point.x == next_point.x && point.y == next_point.y)
 	{
-		if (point.x < SCREEN_WIDTH && point.y < SCREEN_HEIGHT && point.x >= 0 && point.y >= 0)
+		if (point.x < SCREEN_WIDTH && point.y < SCREEN_HEIGHT
+				&& point.x >= 0 && point.y >= 0)
 			put_pixel32(wind.screen, point.x, point.y, line.color);
 		return (0);
 	}

@@ -1,0 +1,12 @@
+vertex 200 200 400 763
+vertex 400 400 200 763
+vertex 196 611
+vertex 396 611
+vertex 295 763
+
+sector  20 40 0 1 2 4 z -1 1 -1 -1 
+sector  20 40 1 4 5 2 z -1 2 -1 0 
+sector  20 40 4 2 8 5 5 z -1 -1 -1 -1 1 
+
+player 300 300 0 0
+

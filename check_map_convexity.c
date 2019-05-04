@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 18:03:11 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 18:03:37 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 08:23:51 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,18 @@ int	sector_is_convex(t_map map, int sector_index)
 	t_wall	first_edge;
 	t_wall	second_edge;
 	int		cross_product_result;
-	int i;
-	int flag;
+	int		i;
 
 	i = -1;
-	flag = 0;
 	while (++i < map.sector[sector_index].edges_length - 1)
 	{
-		first_edge = get_line_coordinates(map, map.sector[sector_index].edges[i]);
-		second_edge = get_line_coordinates(map, map.sector[sector_index].edges[i + 1]);
+		first_edge = get_line_coordinates(map,
+				map.sector[sector_index].edges[i]);
+		second_edge = get_line_coordinates(map,
+				map.sector[sector_index].edges[i + 1]);
 		cross_product_result = vector_cross_product(first_edge, second_edge);
-		if (flag == 0)
-		{
+		if (i == 0)
 			cross_product_sign = cross_product_result > 0 ? 1 : -1;
-			flag = 1;
-		}
 		if (has_different_sign(cross_product_result, cross_product_sign))
 			return (0);
 	}

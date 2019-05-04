@@ -6,11 +6,57 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:21 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/01 20:21:48 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 08:20:48 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom.h"
+
+t_map	check_sprite_key(t_wind wind, t_map map, t_coord mouse_pos, int s)
+{
+	if (wind.event.key.keysym.sym == SDLK_r)
+	{
+		if ((s = in_sector_full(map, mouse_pos)) != -1)
+		{
+			map.r_sprite[map.sprite_r_len].pos = mouse_pos;
+			map.r_sprite[map.sprite_r_len].sector_num = s;
+			map.sprite_r_len++;
+		}
+	}
+	else if (wind.event.key.keysym.sym == SDLK_g)
+	{
+		if ((s = in_sector_full(map, mouse_pos)) != -1)
+		{
+			map.g_sprite[map.sprite_g_len].pos = mouse_pos;
+			map.g_sprite[map.sprite_g_len].sector_num = s;
+			map.sprite_g_len++;
+		}
+	}
+	return (map);
+}
+
+t_map	check_altitude_press(t_wind wind, t_map map, t_coord mouse_pos)
+{
+	if (wind.event.key.keysym.sym == SDLK_UP)
+		map.sector[map.selected_sector].ceil_height += 5;
+	if (wind.event.key.keysym.sym == SDLK_DOWN)
+	{
+		map.sector[map.selected_sector].ceil_height -= 5;
+		if (map.sector[map.selected_sector].ceil_height <=
+				map.sector[map.selected_sector].floor_height)
+			map.sector[map.selected_sector].ceil_height += 5;
+	}
+	if (wind.event.key.keysym.sym == SDLK_RIGHT)
+	{
+		map.sector[map.selected_sector].floor_height += 5;
+		if (map.sector[map.selected_sector].ceil_height <=
+				map.sector[map.selected_sector].floor_height)
+			map.sector[map.selected_sector].floor_height -= 5;
+	}
+	if (wind.event.key.keysym.sym == SDLK_LEFT)
+		map.sector[map.selected_sector].floor_height -= 5;
+	return (map);
+}
 
 t_map	check_key_up(t_wind wind, t_map map, t_coord mouse_pos)
 {
@@ -23,7 +69,7 @@ t_map	check_key_up(t_wind wind, t_map map, t_coord mouse_pos)
 	}
 	else if (wind.event.key.keysym.sym == SDLK_v)
 		map = create_mid_line_vertex(map, mouse_pos);
-	else if	(wind.event.key.keysym.sym == SDLK_s)
+	else if (wind.event.key.keysym.sym == SDLK_s)
 		map.selected_sector = in_sector_full(map, mouse_pos);
 	else if (wind.event.key.keysym.sym == SDLK_c)
 	{
@@ -33,47 +79,14 @@ t_map	check_key_up(t_wind wind, t_map map, t_coord mouse_pos)
 			map.player.pos = mouse_pos;
 		}
 	}
-	else if (wind.event.key.keysym.sym == SDLK_r)
-	{
-		if ((sector_num = in_sector_full(map, mouse_pos)) != -1)
-		{
-			map.r_sprite[map.sprite_r_len].pos = mouse_pos;
-			map.r_sprite[map.sprite_r_len].sector_num = sector_num;
-			map.sprite_r_len++;
-		}
-	}
-	else if (wind.event.key.keysym.sym == SDLK_g)
-	{
-		if ((sector_num = in_sector_full(map, mouse_pos)) != -1)
-		{
-			map.g_sprite[map.sprite_g_len].pos = mouse_pos;
-			map.g_sprite[map.sprite_g_len].sector_num = sector_num;
-			map.sprite_g_len++;
-		}
-	}
-	if (wind.event.key.keysym.sym == SDLK_UP)
-	if (wind.event.key.keysym.sym == SDLK_UP)
-		map.sector[map.selected_sector].ceil_height += 5;
-	if (wind.event.key.keysym.sym == SDLK_DOWN)
-	{
-		map.sector[map.selected_sector].ceil_height -= 5;
-		if (map.sector[map.selected_sector].ceil_height <= map.sector[map.selected_sector].floor_height)	
-			map.sector[map.selected_sector].ceil_height += 5;
-	}
-	if (wind.event.key.keysym.sym == SDLK_RIGHT)
-	{
-		map.sector[map.selected_sector].floor_height += 5;
-		if (map.sector[map.selected_sector].ceil_height <= map.sector[map.selected_sector].floor_height)	
-			map.sector[map.selected_sector].floor_height -= 5;
-	}
-	if (wind.event.key.keysym.sym == SDLK_LEFT)
-		map.sector[map.selected_sector].floor_height -= 5;
+	map = check_sprite_key(wind, map, mouse_pos, sector_num);
+	map = check_altitude_press(wind, map, mouse_pos);
 	return (map);
 }
 
 t_map	check_key_press(t_wind wind, t_map map, t_coord mouse_pos)
 {
 	if (wind.event.type == SDL_KEYUP)
-		map = check_key_up(wind, map, mouse_pos);	
+		map = check_key_up(wind, map, mouse_pos);
 	return (map);
 }

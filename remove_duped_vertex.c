@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 20:29:56 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/28 21:05:10 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 09:35:18 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_map	remove_vertex(t_map map, int to_remove)
 {
 	int i;
 
-	i = to_remove - 1 ;
-	while(++i < map.vertex_length - 1)
+	i = to_remove - 1;
+	while (++i < map.vertex_length - 1)
 		map.vertex[i] = map.vertex[i + 1];
 	map.vertex_length -= 1;
 	return (map);

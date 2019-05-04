@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:41 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/30 22:25:45 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 09:28:23 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	clean_and_exit(t_wind wind)
 {
-	//TO DO: clear for leaks, close fd's etc
 	SDL_DestroyWindow(wind.window);
 	SDL_Quit();
 	exit(1);
@@ -23,25 +22,23 @@ void	clean_and_exit(t_wind wind)
 void	exit_on_error(void)
 {
 	ft_putendl("There was an error starting the program");
-//	SDL_DestroyWindow(wind.window);
 	SDL_Quit();
 	exit(1);
-	//TO DO: close fd's, manage leaks, etc.
 }
 
 int		main(int argc, char **argv)
 {
-	t_map map;
-	t_wind wind;
-	t_coord mouse_pos;
+	t_map	map;
+	t_wind	wind;
+	t_coord	mouse_pos;
 
 	if (argc != 2)
 		return (0);
-
-	//map = read_values(argv[1]); if there'se a map.
-	map = initialize_values(); //new map set-up.
+	map = read_map();
+	if (!geometry_is_valid(map))
+		exit_on_error();
 	wind = init_wind(wind);
-	while(1)
+	while (1)
 	{
 		while (SDL_PollEvent(&wind.event))
 		{

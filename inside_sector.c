@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 19:45:57 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/01 00:33:02 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/04 09:52:36 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int		in_sector(t_map map, t_coord point)
 		while (++j < map.sector[i].edges_length)
 		{
 			sector_edge = get_line_coordinates(map, map.sector[i].edges[j]);
-			if (line_intersects(point, infinite, sector_edge.start, sector_edge.end))
+			if (line_intersects(point, infinite,
+						sector_edge.start, sector_edge.end))
 				intersection_count++;
 		}
 		if (intersection_count == 1)
@@ -57,7 +58,8 @@ int		in_sector_full(t_map map, t_coord point)
 		while (++j < map.sector[i].edges_length)
 		{
 			sector_edge = get_line_coordinates(map, map.sector[i].edges[j]);
-			if (line_intersects(point, infinite, sector_edge.start, sector_edge.end))
+			if (line_intersects(point, infinite,
+						sector_edge.start, sector_edge.end))
 				intersection_count++;
 		}
 		if (intersection_count == 1)
