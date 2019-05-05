@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:58:43 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/05 00:44:05 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/05 01:09:11 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_map	read_player(t_map map, char **txt)
 	return (map);
 }
 
-t_map	make_read_decision(t_map map, char **txt, int strlen)
+t_map	make_read_decision(t_map map, char **txt, size_t strlen)
 {
 	if (txt[map.i][map.j] == 'v')
 		map = read_vertex(map, txt);

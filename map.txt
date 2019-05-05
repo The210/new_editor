@@ -1,27 +1,8 @@
 vertex 200 200 400 z
-vertex 486 397 z
-vertex 482 189 z
+vertex 400 400 200 z
 vertex 313 511 z
-vertex 431 600 z
-vertex 607 484 z
-vertex 255 574 z
-vertex 371 715 z
-vertex 154 431 z
-vertex 267 542 z
-vertex 68 502 z
-vertex 181 613 z
-vertex 691 407 z
-vertex 706 179 z
-vertex 759 417 z
-vertex 774 189 z
 z
-sector  480 520 0 1 4 2 3 c  -1 -1 3 1 5  z
-sector  480 520 4 5 6 2 c  0 2 -1 -1  z
-sector  480 520 4 7 8 5 c  1 -1 -1 -1  z
-sector  480 520 1 9 10 4 c  0 -1 4 -1  z
-sector  480 520 9 11 12 10 c  3 -1 -1 -1  z
-sector  480 520 2 13 14 3 c  0 -1 6 -1  z
-sector  480 520 13 15 16 14 c  5 -1 -1 -1  z
+sector  480 520 0 1 4 2 3 c  -1 -1 -1 -1 -1  z
 z
-player 359 403 0 0 z
+player 300 300 0 0 z
 z

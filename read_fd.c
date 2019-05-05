@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 02:48:39 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 14:20:39 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/05 01:13:26 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,21 +118,20 @@ t_map		read_map(void)
 	t_map	map;
 	char	**txt;
 	int		fd;
-	size_t	strlen;
 
 	fd = open("map.txt", O_RDONLY);
 	txt = read_lines(fd);
 	close(fd);
+	map.i = 0;
 	map = init_map(map);
 	while (txt[++map.i])
 	{
-		strlen = ft_strlen(txt[map.i]) - 2;
 		map.j = 0;
 		if (txt[map.i][map.j])
 		{
 			if (txt[map.i][map.j] == '\n')
 				continue;
-			map = make_read_decision(map, txt, strlen);
+			map = make_read_decision(map, txt, ft_strlen(txt[map.i] - 2));
 		}
 	}
 	map.i = -1;

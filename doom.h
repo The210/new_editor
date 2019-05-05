@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 21:33:46 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/05 00:48:26 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/05 01:09:39 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ t_coord			*place_vertex(t_coord new_vertex_pos, t_coord *vertex, int vertex_leng
 t_coord			*create_edge(t_coord vertex_indexes, t_coord *edges, int edge_length);
 t_coord		 	get_closest_point_on_line(t_map map, t_coord world_pos, int edge_index);
 t_coord			*initialize_edges(t_map map);
-t_wind			init_wind(t_wind wind);
+t_wind			init_wind(void);
 t_wall			get_line_coordinates(t_map map, int i);
 t_map			extrude_sector(t_map map, int edge_to_extrude, t_coord extrude_start, t_coord extrude_end);
 t_map			divide_line(t_map map, int edge_index);
@@ -140,7 +140,7 @@ t_map			read_map(void);
 t_map			create_edge_on_sector(t_map map, int sector_to_change, int edge_index);
 t_map			add_edge_to_sector(t_map map, int altered_edge);
 t_map			create_new_vertexes(t_map map, int edge_to_extrude_index, t_coord extrude_vector);
-t_map			make_read_decision(t_map map, char **txt, int strlen);
+t_map			make_read_decision(t_map map, char **txt, size_t strlen);
 t_map			init_map(t_map map);
 t_map			read_vertex(t_map map, char **txt);
 t_map			read_sector(t_map map, char **txt);
