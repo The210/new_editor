@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:21 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 22:30:27 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/07 03:23:24 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,7 @@
 
 t_map	check_sprite_key(t_wind wind, t_map map, t_coord mouse_pos, int s)
 {
-	if (wind.event.key.keysym.sym == SDLK_r)
-	{
-		if ((s = in_sector_full(map, mouse_pos)) != -1)
-		{
-			map.r_sprite[map.sprite_r_len].pos = mouse_pos;
-			map.r_sprite[map.sprite_r_len].sector_num = s;
-			map.sprite_r_len++;
-		}
-	}
-	else if (wind.event.key.keysym.sym == SDLK_g)
+	if (wind.event.key.keysym.sym == SDLK_g)
 	{
 		if ((s = in_sector_full(map, mouse_pos)) != -1)
 		{
@@ -62,6 +53,7 @@ t_map	check_key_up(t_wind wind, t_map map, t_coord mouse_pos)
 {
 	int sector_num;
 
+	sector_num = -1;
 	if (wind.event.key.keysym.sym == SDLK_ESCAPE)
 	{
 		write_fd(map);

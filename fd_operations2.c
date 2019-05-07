@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 18:32:49 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 12:38:57 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/07 03:05:17 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		get_fd_index(t_map map, t_coord f)
 		while (++j < map.vertex_length)
 		{
 			if (map.vertex[i].y == map.vertex[j].y && ++count &&
-					map.vertex[j].x == f.x && map.vertex[j].y == f.y)
+			map.vertex[j].x == f.x && map.vertex[j].y == f.y)
 				return (count);
 		}
 	}

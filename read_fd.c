@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 02:48:39 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 14:20:39 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/07 03:27:26 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,25 @@ char		**read_lines(int fd)
 
 t_map		read_vertex(t_map map, char **txt)
 {
-	int			flag;
 	int			save;
 	static int	count = -1;
 
-	flag = 0;
-	while (map.j < ft_strlen(txt[map.i]) - 2)
+	while (map.j < ft_strlen(txt[map.i]) - 2 && (txt[map.i][map.j] < '0' ||
+				txt[map.i][map.j] > '9'))
+		map.j++;
+	save = ft_iatoi(txt[map.i], map.j);
+	while (map.j < ft_strlen(txt[map.i]) - 2 && txt[map.i][map.j] >= '0' &&
+			txt[map.i][map.j] <= '9')
+		map.j++;
+	while (++map.j < ft_strlen(txt[map.i]) - 2)
 	{
 		count++;
 		map.vertex_length++;
-		while (map.j < ft_strlen(txt[map.i]) - 2 && (txt[map.i][map.j] < '0' ||
-					txt[map.i][map.j] > '9'))
-			map.j++;
-		save = flag == 0 ? ft_iatoi(txt[map.i], map.j) : save;
 		map.vertex[count].x = ft_iatoi(txt[map.i], map.j);
-		while (map.j < ft_strlen(txt[map.i]) - 2 && txt[map.i][map.j] >= 48 &&
-				txt[map.i][map.j] <= 57)
-			map.j++;
-		if (++map.j && flag++ == 0)
-			map.vertex[count].x = ft_iatoi(txt[map.i], map.j);
-		map.vertex[count].y = save;
 		while (map.j < ft_strlen(txt[map.i]) - 2 && txt[map.i][map.j] >= '0' &&
 				txt[map.i][map.j] <= '9')
 			map.j++;
+		map.vertex[count].y = save;
 	}
 	return (map);
 }
@@ -123,7 +119,7 @@ t_map		read_map(void)
 	fd = open("map.txt", O_RDONLY);
 	txt = read_lines(fd);
 	close(fd);
-	map = init_map(map);
+	map = init_map();
 	while (txt[++map.i])
 	{
 		strlen = ft_strlen(txt[map.i]) - 2;

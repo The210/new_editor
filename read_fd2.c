@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:58:43 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 14:21:01 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/07 03:27:58 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,22 @@ int		ft_iatoi(char *wall, int index)
 	return (number * negative);
 }
 
-t_map	init_map(t_map map)
+t_map	init_map(void)
 {
+	t_map map;
+
 	map.i = -1;
 	map.sector_length = 0;
 	map.edges_length = 0;
 	map.vertex_length = 0;
+	map.sprite_g_len = 0;
 	if ((map.vertex = (t_coord*)malloc(sizeof(t_coord) * (1000))) == NULL)
 		exit_on_error();
 	if ((map.edges = (t_coord*)malloc(sizeof(t_coord) * (1000))) == NULL)
 		exit_on_error();
 	if ((map.sector = (t_sector*)malloc(sizeof(t_sector) * (200))) == NULL)
+		exit_on_error();
+	if ((map.g_sprite = (t_sprite_g*)malloc(sizeof(t_sprite_g) * 200)) == NULL)
 		exit_on_error();
 	return (map);
 }
@@ -68,11 +73,11 @@ t_map	read_player(t_map map, char **txt)
 	return (map);
 }
 
-t_map	make_read_decision(t_map map, char **txt, int strlen)
+t_map	make_read_decision(t_map map, char **txt, size_t strlen)
 {
 	if (txt[map.i][map.j] == 'v')
 		map = read_vertex(map, txt);
-	else if (txt[map.i][map.j] == 's')
+	if (txt[map.i][map.j] == 's')
 		map = read_sector(map, txt);
 	else if (txt[map.i][map.j] == 'p')
 	{

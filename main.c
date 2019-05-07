@@ -6,7 +6,7 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:41 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 09:28:23 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/07 03:22:11 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,16 @@ void	exit_on_error(void)
 	exit(1);
 }
 
-int		main(int argc, char **argv)
+int		main(void)
 {
 	t_map	map;
 	t_wind	wind;
 	t_coord	mouse_pos;
 
-	if (argc != 2)
-		return (0);
 	map = read_map();
 	if (!geometry_is_valid(map))
 		exit_on_error();
-	wind = init_wind(wind);
+	wind = init_wind();
 	while (1)
 	{
 		while (SDL_PollEvent(&wind.event))
