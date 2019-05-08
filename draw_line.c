@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 20:52:30 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 08:29:16 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:46:44 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 t_line	mdy(t_wind wind, t_coord point, t_coord next_point, t_line line)
 {

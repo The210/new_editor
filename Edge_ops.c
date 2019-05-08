@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 22:06:04 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/07 02:21:06 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:47:14 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 t_coord	*create_edge(t_coord vertex_indexes, t_coord *edges, int edges_length)
 {

@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 10:07:20 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 10:08:03 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:49:44 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 t_map		create_edge_on_sector(t_map map,
 		int sector_to_change, int edge_index)

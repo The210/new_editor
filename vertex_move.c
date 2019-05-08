@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 23:07:05 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 09:56:15 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:50:07 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 int		select_vertex_to_move(t_map map, t_coord mouse_pos)
 {

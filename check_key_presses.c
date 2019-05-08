@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:21 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/07 03:23:24 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:45:36 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 t_map	check_sprite_key(t_wind wind, t_map map, t_coord mouse_pos, int s)
 {
@@ -29,23 +29,23 @@ t_map	check_sprite_key(t_wind wind, t_map map, t_coord mouse_pos, int s)
 t_map	check_altitude_press(t_wind wind, t_map map)
 {
 	if (wind.event.key.keysym.sym == SDLK_UP)
-		map.sector[map.selected_sector].ceil_height += 5;
+		map.sector[map.selected_sector].ceil_height += 1;
 	if (wind.event.key.keysym.sym == SDLK_DOWN)
 	{
-		map.sector[map.selected_sector].ceil_height -= 5;
+		map.sector[map.selected_sector].ceil_height -= 1;
 		if (map.sector[map.selected_sector].ceil_height <=
 				map.sector[map.selected_sector].floor_height)
-			map.sector[map.selected_sector].ceil_height += 5;
+			map.sector[map.selected_sector].ceil_height += 1;
 	}
 	if (wind.event.key.keysym.sym == SDLK_RIGHT)
 	{
-		map.sector[map.selected_sector].floor_height += 5;
+		map.sector[map.selected_sector].floor_height += 1;
 		if (map.sector[map.selected_sector].ceil_height <=
 				map.sector[map.selected_sector].floor_height)
-			map.sector[map.selected_sector].floor_height -= 5;
+			map.sector[map.selected_sector].floor_height -= 1;
 	}
 	if (wind.event.key.keysym.sym == SDLK_LEFT)
-		map.sector[map.selected_sector].floor_height -= 5;
+		map.sector[map.selected_sector].floor_height -= 1;
 	return (map);
 }
 

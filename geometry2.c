@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 09:46:15 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 09:48:02 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:48:03 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 int	min(int a, int b)
 {

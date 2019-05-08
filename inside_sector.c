@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 19:45:57 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 09:52:36 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:48:36 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 int		in_sector(t_map map, t_coord point)
 {

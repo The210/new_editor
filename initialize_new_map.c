@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:18:45 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 09:16:01 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:48:29 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 t_sector	initialize_sector(t_map map)
 {

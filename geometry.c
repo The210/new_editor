@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:23:30 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 09:51:35 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:47:56 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 int		dot_product(t_coord a, t_coord b)
 {

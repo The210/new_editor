@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 18:32:49 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/07 03:05:17 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:47:32 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 int		get_fd_index(t_map map, t_coord f)
 {

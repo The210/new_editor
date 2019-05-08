@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:41 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/07 03:22:11 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:48:42 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 void	clean_and_exit(t_wind wind)
 {

@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/27 20:24:51 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 22:31:47 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:49:58 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 t_coord	*place_vertex(t_coord new_vertex_pos,
 		t_coord *vertex, int vertex_length)

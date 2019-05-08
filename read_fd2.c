@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 12:58:43 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/07 03:27:58 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:49:10 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 int		ft_iatoi(char *wall, int index)
 {

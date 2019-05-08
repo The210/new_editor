@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 20:54:26 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 08:32:05 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:47:02 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 void	draw_sector_altitude(t_wind wind, t_map map)
 {

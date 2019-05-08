@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 18:04:24 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 08:26:51 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:45:59 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 int	orientation(t_coord p, t_coord q, t_coord r)
 {

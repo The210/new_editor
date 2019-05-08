@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 20:29:56 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/04 09:35:18 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:49:16 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 int		vertex_is_equal(t_coord a, t_coord b)
 {

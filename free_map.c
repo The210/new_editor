@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 23:22:47 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/30 19:55:56 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:47:47 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 void	free_map(t_map map)
 {

@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 22:11:10 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/04/30 22:13:56 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:46:54 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 void	draw_rectangle(t_coord start, t_coord end, t_wind wind)
 {

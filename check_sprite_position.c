@@ -6,11 +6,11 @@
 /*   By: dhorvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 01:29:02 by dhorvill          #+#    #+#             */
-/*   Updated: 2019/05/01 02:25:37 by dhorvill         ###   ########.fr       */
+/*   Updated: 2019/05/08 07:46:23 by dhorvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom.h"
+#include "doome.h"
 
 int		g_sprite_outside(t_map map)
 {
